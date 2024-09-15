@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # sghii_mobile
 
 Sistema de Gestión de Herramienta Ingeniar Inoxidables - Cliente Movil
@@ -14,3 +15,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# SGHII-Mobile
+Sistema de Gestion de Herramienta Ingeniar Inoxidables - Client Mobile App
+>>>>>>> 4c7013507450c19ed5692455df8941bd37fe019f
