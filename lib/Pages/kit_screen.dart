@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import '../Inventory/inventory_service.dart';
-import '../Inventory/image_service.dart';
-import '../Layout/tool_card.dart';
+import '../Inventory/kit_service.dart';
+import '../Layout/kit_card.dart';
 
-class InventoryScreen extends StatelessWidget {
-  final InventoryService _inventoryService = InventoryService(); 
+class KitScreen extends StatelessWidget {
+  final KitService _kitService = KitService();
 
-  InventoryScreen({super.key});
+  KitScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Inventario', style: TextStyle(color: Colors.blueAccent, fontSize: 25, fontWeight: FontWeight.bold))),
+      appBar: AppBar(title: const Text('Kits', style: TextStyle(color: Colors.blueAccent, fontSize: 25, fontWeight: FontWeight.bold))),
       body: FutureBuilder<List<dynamic>>(
-        future: _inventoryService.getInventory(),
+        future: _kitService.getKits(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -26,13 +25,11 @@ class InventoryScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: inventory.length,
                 itemBuilder: (context, index) {
-                  ToolThumbnail imageContainer;
-                  CustomToolItem toolContainer;
-                  return toolContainer = CustomToolItem(thumbnail: imageContainer = ToolThumbnail(imageId: inventory[index]['id']),
+                  CustomKitItem kitContainer;
+                  return kitContainer = CustomKitItem(thumbnail: const Image(image: AssetImage('./assets/kits.png') ),
                       id: inventory[index]['id'],
                       nombre: inventory[index]['nombre'],
-                      cantidad_D: inventory[index]['cantidad_disponible'],
-                      marca: inventory[index]['marca'],
+                      disponible: inventory[index]['disponible'],
                       fecha_in: inventory[index]['fecha_in']);
                 },
               ),

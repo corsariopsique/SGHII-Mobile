@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sghii_mobile/Auth/auth_provider.dart';
-import 'Layout/inventory_screen.dart';
-import 'Auth/login_screen.dart';
+import 'package:sghii_mobile/Pages/menu_principal.dart';
+import 'package:sghii_mobile/Pages/worker_screen.dart';
+import 'Pages/inventory_screen.dart';
+import 'Pages/kit_screen.dart';
+import 'Pages/login_screen.dart';
 
 void main() {
   runApp(
@@ -27,7 +30,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LoginScreen(),
+        '/menu':(context) => MenuPrincipal(),
         '/inventory': (context) => InventoryScreen(),
+        '/kits': (context) => KitScreen(),
+        '/workers': (context) => WorkerScreen()
       }
     );
   }

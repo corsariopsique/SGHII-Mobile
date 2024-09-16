@@ -6,9 +6,18 @@ import '../Auth/auth_service.dart';
 class ToolThumbnail extends StatefulWidget {
 
   final String imageId; // Parámetro que será utilizado en la URL
+  final int tipo; // parametro tipo de solicitud
 
+  String urlImage (int tipo){
+    if (tipo == 1){
+      return 'http://192.168.0.188:8081/api/images/$imageId';
+    }else if (tipo == 2){
+      return 'http://192.168.0.188:8081/api/imagesworker/$imageId';
+    }
+    return 'error';
+  }
 
-  ToolThumbnail({required this.imageId});
+  ToolThumbnail({required this.imageId, required this.tipo});
 
   @override
   _ToolThumbnailState createState() => _ToolThumbnailState();
@@ -20,15 +29,15 @@ class _ToolThumbnailState extends State<ToolThumbnail> {
   @override
   void initState() {
     super.initState();
-    _fetchImage(widget.imageId); // Pasamos el parámetro al método de solicitud
+    _fetchImage(widget.urlImage(widget.tipo)); // Pasamos el parámetro al método de solicitud
   }
 
   // Función para obtener la imagen desde la API
-  Future<void> _fetchImage(String imageId) async {
+  Future<void> _fetchImage(String urlImage) async {
 
     final AuthService _authService = AuthService();
     final token = await _authService.getToken();
-    final url = Uri.parse('http://192.168.0.188:8081/api/images/$imageId'); // URL
+    final url = Uri.parse('$urlImage'); // URL
 
     final response = await http.get(
         url,

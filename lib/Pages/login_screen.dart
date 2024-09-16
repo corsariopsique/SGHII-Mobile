@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'auth_provider.dart';
+import '../Auth/auth_provider.dart';
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController _usernameController = TextEditingController();
@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
             Container(
               width: 350,
                 margin: const EdgeInsets.fromLTRB(10, 0, 10, 35),
-                child: Image(image: AssetImage('./assets/logoCompleto.png'))),
+                child: const Image(image: AssetImage('./assets/logoCompleto.png'))),
              SizedBox(
                height: 10,
              ),
@@ -62,7 +62,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(0, 14, 0, 8),
               child: Container(
                 width: 200,
                 decoration: BoxDecoration(color: Colors.blueAccent, borderRadius: BorderRadius.circular(15)),
@@ -71,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                     final authProvider = Provider.of<AuthProvider>(context, listen: false);
                     await authProvider.login(_usernameController.text, _passwordController.text);
                     if (authProvider.token != null) {
-                      Navigator.pushReplacementNamed(context, '/inventory');
+                      Navigator.pushReplacementNamed(context, '/menu');
                     }
                   },
                   child: const Text(
